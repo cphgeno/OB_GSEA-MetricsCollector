@@ -72,7 +72,7 @@ for input_data in df_all["dataset"].drop_duplicates():
     print(input_data)
     df_inputdata = df_all[df_all["dataset"] == input_data]
     subprocess.run(f"python {script_dir}/collate_metrics.py --output_dir {output_dir}\
-    --name {input_data.split(":")[0]} --input_data {input_data} \
+    --name {input_data.split(":")[0]} --analysis {input_data} \
     --MetricsValidation.flag {" ".join(df_inputdata["flag_filepath"].astype(str))}",
     shell = True)
 
