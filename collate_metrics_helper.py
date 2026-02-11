@@ -1,9 +1,3 @@
-import numpy as np
-import pandas as pd
-import os
-import matplotlib.pyplot as plt
-import seaborn as sns
-
 def load_top1_metrics_from_files(file_list, dataset_name):
     """
     Load top-1 metrics from list of files and concatenate.

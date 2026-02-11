@@ -114,6 +114,7 @@ group_dfs_customised = []
 
 for label, ds_list in groups:
     df_g = metrics_df[metrics_df["Analysis"].str.split(':').str[0].isin(ds_list)].copy()
+    if df_g.empty: continue
     df_g["__GroupLabel__"] = label
     df_g['Input'] = df_g['Analysis'].str.split('-', expand = True)[0]
 
@@ -141,7 +142,6 @@ precision_vs_recall_group_plotting(group_dfs_universal, groups, all_tools, 'Univ
 precision_vs_recall_group_plotting(group_dfs_customised, groups, all_tools, 'Same-Cohort', args.output_dir, TOOL_COLOURS)
 
 # group all dfs together for sina plotting of MCC distribution
-subprocess.run(f"python {script_dir}/sina_plotting.py --output_dir {output_dir}",
-    shell = True)
+plot_sina(args.output_dir, TOOL_COLOURS)
 
 pathlib.Path(f"{output_dir}/plotting_wrapper_complete.flag").touch()

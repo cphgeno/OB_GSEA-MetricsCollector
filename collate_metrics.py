@@ -1,9 +1,9 @@
 import numpy as np
-import pandas as pd
 import os
 import matplotlib.pyplot as plt
-import seaborn as sns
 import argparse
+import pandas as pd
+import seaborn as sns
 from collate_metrics_helper import *
 
 ###Join together metrics calculated with different tools for a given dataset
@@ -33,36 +33,36 @@ os.makedirs(f"./{output_dir}", exist_ok=True)
 dir_paths_auc = []
 dir_paths_top1 = []
 
-TOOL_COLOURS = {
+TOOL_COLOURS_EXTRA = {
     # fgsea
-    "fgsea_DeltaCentroid": (0.1216, 0.4667, 0.7059, 1.0),   # tab10 blue
-    "fgsea_RankExpr":  (0.6824, 0.7804, 0.9098, 1.0),   # light blue
+    "fgsea (DeltaCentroid)": (0.1216, 0.4667, 0.7059, 1.0),   # tab10 blue
+    "fgsea (RankExpr)":  (0.6824, 0.7804, 0.9098, 1.0),   # light blue
 
     # gsva
-    "gsva_RankReference":           (0.1725, 0.6275, 0.1725, 1.0),   # green
-    "plage_RankReference":          (0.8902, 0.4667, 0.7608, 1.0),   # pink
-    "zscore_RankReference":         (1.0000, 0.4980, 0.0549, 1.0),   # orange
+    "gsva (RankReference)":           (0.1725, 0.6275, 0.1725, 1.0),   # green
+    "plage (RankReference)":          (0.8902, 0.4667, 0.7608, 1.0),   # pink
+    "zscore (RankReference)":         (1.0000, 0.4980, 0.0549, 1.0),   # orange
 
-    "gsva_RankExpr": (0.276, 0.722, 0.276, 1.0),
-    "gsva_DeltaCentroid":  (0.138, 0.502, 0.138, 1.0),
+    "gsva (RankExpr)": (0.276, 0.722, 0.276, 1.0),
+    "gsva (DeltaCentroid)":  (0.138, 0.502, 0.138, 1.0),
 
-    "plage_RankExpr": (0.912, 0.570, 0.816, 1.0),
-    "plage_DeltaCentroid":  (0.712, 0.373, 0.608, 1.0),
+    "plage (RankExpr)": (0.912, 0.570, 0.816, 1.0),
+    "plage (DeltaCentroid)":  (0.712, 0.373, 0.608, 1.0),
 
-    "zscore_RankExpr": (1.0, 0.598, 0.1549, 1.0),
-    "zscore_DeltaCentroid":  (0.800, 0.398, 0.0439, 1.0),
+    "zscore (RankExpr)": (1.0, 0.598, 0.1549, 1.0),
+    "zscore (DeltaCentroid)":  (0.800, 0.398, 0.0439, 1.0),
 
     # singscore
-    "singscore_DeltaCentroid": (0.8392, 0.1529, 0.1569, 1.0),  # red
-    "singscore_RankExpr":   (1.0000, 0.5961, 0.5882, 1.0),  # light red
+    "singscore (DeltaCentroid)": (0.8392, 0.1529, 0.1569, 1.0),  # red
+    "singscore (RankExpr)":   (1.0000, 0.5961, 0.5882, 1.0),  # light red
 
     # ssgsea
-    "ssgsea_DeltaCentroid": (0.5804, 0.4039, 0.7412, 1.0),     # purple
-    "ssgsea_RankExpr":   (0.7725, 0.6902, 0.8353, 1.0),     # light purple
+    "ssgsea (DeltaCentroid)": (0.5804, 0.4039, 0.7412, 1.0),     # purple
+    "ssgsea (RankExpr)":   (0.7725, 0.6902, 0.8353, 1.0),     # light purple
 
     # ucell
-    "ucell_DeltaCentroid":  (0.5490, 0.3373, 0.2941, 1.0),     # brown
-    "ucell_RankExpr":    (0.7686, 0.6118, 0.5804, 1.0),     # light brown
+    "ucell (DeltaCentroid)":  (0.5490, 0.3373, 0.2941, 1.0),     # brown
+    "ucell (RankExpr)":    (0.7686, 0.6118, 0.5804, 1.0),     # light brown
 }
 
 
@@ -92,11 +92,11 @@ df_metrics = df_metrics.drop(tools_to_remove)
 if not isinstance(auc_metrics_tools_dict, dict):# np.isnan(auc_metrics_tools_dict):
     plot_metrics_with_annotations(df_metrics, output_dir, dataset_name,
                                   analysis_name, metrics_to_plot=["Recall_Weighted"],
-                                  single_label_class = True, tool_colors = TOOL_COLOURS)
+                                  single_label_class = True, tool_colors = TOOL_COLOURS_EXTRA)
 
 else:
     #Plot overall metrics
-    plot_metrics_with_annotations(df_metrics, output_dir, dataset_name, analysis_name, tool_colors = TOOL_COLOURS)
+    plot_metrics_with_annotations(df_metrics, output_dir, dataset_name, analysis_name, tool_colors = TOOL_COLOURS_EXTRA)
 
     #Plot specific metrics individually for each label class
     for metric in ['F1', 'Precision', 'Recall']:
