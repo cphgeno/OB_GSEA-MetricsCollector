@@ -1,0 +1,2 @@
+entrypoints:
+  default: plotting_wrapper.py

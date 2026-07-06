@@ -28,41 +28,41 @@ flag_filepaths = getattr(args, 'MetricsValidation.flag')
 #########################################################
 
 output_dir = f"{output_dir}/{analysis_name}"
-os.makedirs(f"./{output_dir}", exist_ok=True)
+os.makedirs(f"{output_dir}", exist_ok=True)
 
 dir_paths_auc = []
 dir_paths_top1 = []
 
 TOOL_COLOURS_EXTRA = {
-    # fgsea
-    "fgsea (DeltaCentroid)": (0.1216, 0.4667, 0.7059, 1.0),   # tab10 blue
-    "fgsea (RankExpr)":  (0.6824, 0.7804, 0.9098, 1.0),   # light blue
+    # fGSEA
+    "fGSEA (DeltaCentroid)": (0.1216, 0.4667, 0.7059, 1.0),   # tab10 blue
+    "fGSEA (RankExpr)":  (0.6824, 0.7804, 0.9098, 1.0),   # light blue
 
-    # gsva
-    "gsva (RankReference)":           (0.1725, 0.6275, 0.1725, 1.0),   # green
-    "plage (RankReference)":          (0.8902, 0.4667, 0.7608, 1.0),   # pink
-    "zscore (RankReference)":         (1.0000, 0.4980, 0.0549, 1.0),   # orange
+    # GSVA
+    "GSVA (RankReference)":           (0.1725, 0.6275, 0.1725, 1.0),   # green
+    "PLAGE (RankReference)":          (0.8902, 0.4667, 0.7608, 1.0),   # pink
+    "ZSCORE (RankReference)":         (1.0000, 0.4980, 0.0549, 1.0),   # orange
 
-    "gsva (RankExpr)": (0.276, 0.722, 0.276, 1.0),
-    "gsva (DeltaCentroid)":  (0.138, 0.502, 0.138, 1.0),
+    "GSVA (RankExpr)": (0.276, 0.722, 0.276, 1.0),
+    "GSVA (DeltaCentroid)":  (0.138, 0.502, 0.138, 1.0),
 
-    "plage (RankExpr)": (0.912, 0.570, 0.816, 1.0),
-    "plage (DeltaCentroid)":  (0.712, 0.373, 0.608, 1.0),
+    "PLAGE (RankExpr)": (0.912, 0.570, 0.816, 1.0),
+    "PLAGE (DeltaCentroid)":  (0.712, 0.373, 0.608, 1.0),
 
-    "zscore (RankExpr)": (1.0, 0.598, 0.1549, 1.0),
-    "zscore (DeltaCentroid)":  (0.800, 0.398, 0.0439, 1.0),
+    "ZSCORE (RankExpr)": (1.0, 0.598, 0.1549, 1.0),
+    "ZSCORE (DeltaCentroid)":  (0.800, 0.398, 0.0439, 1.0),
 
     # singscore
     "singscore (DeltaCentroid)": (0.8392, 0.1529, 0.1569, 1.0),  # red
     "singscore (RankExpr)":   (1.0000, 0.5961, 0.5882, 1.0),  # light red
 
-    # ssgsea
-    "ssgsea (DeltaCentroid)": (0.5804, 0.4039, 0.7412, 1.0),     # purple
-    "ssgsea (RankExpr)":   (0.7725, 0.6902, 0.8353, 1.0),     # light purple
+    # ssGSEA
+    "ssGSEA (DeltaCentroid)": (0.5804, 0.4039, 0.7412, 1.0),     # purple
+    "ssGSEA (RankExpr)":   (0.7725, 0.6902, 0.8353, 1.0),     # light purple
 
-    # ucell
-    "ucell (DeltaCentroid)":  (0.5490, 0.3373, 0.2941, 1.0),     # brown
-    "ucell (RankExpr)":    (0.7686, 0.6118, 0.5804, 1.0),     # light brown
+    # UCell
+    "UCell (DeltaCentroid)":  (0.5490, 0.3373, 0.2941, 1.0),     # brown
+    "UCell (RankExpr)":    (0.7686, 0.6118, 0.5804, 1.0),     # light brown
 }
 
 

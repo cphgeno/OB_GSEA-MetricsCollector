@@ -1,3 +1,10 @@
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+import argparse
+import pandas as pd
+import seaborn as sns
+
 def load_top1_metrics_from_files(file_list, dataset_name):
     """
     Load top-1 metrics from list of files and concatenate.
@@ -38,8 +45,6 @@ def load_top1_metrics_from_files(file_list, dataset_name):
         #Load total samples we have computed NES scores for, for given tool
         total_number_of_samples = df_label_classes["Count"].sum()
         df_tool["Count"] = total_number_of_samples
-        
-        # df_NA = pd.read_csv(f"{file_path}/{filename_NAs}", sep="\t", index_col=0)
         
         #Merge metrics obtained for each tool
         df_overall = pd.concat([df_overall, df_tool])
